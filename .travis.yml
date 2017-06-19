@@ -8,4 +8,4 @@ script:
   - rvm get stable
   - rvm cleanup all
   - xcodebuild -project "CI Test.xcodeproj" -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
-  - xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=Simulator,name=iPhone,OS=10.3' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
+  - xcodebuild test -project "CI Test.xcodeproj" -destination 'platform=Simulator,name=iPhone,OS=10.3' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
