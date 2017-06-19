@@ -19,7 +19,8 @@ class ViewController: UIViewController {
         let secondVal = secondField.text!
         
         let converter = InputConverter()
-        guard let firstInt = converter.convertInt(input: firstVal), let secondInt = converter.convertInt(input: secondVal) else { return }
+        guard let firstInt = converter.convertInt(input: firstVal) else { return }
+        guard let secondInt = converter.convertInt(input: secondVal) else { return }
         
         let result = Adder().add(n1: firstInt, n2: secondInt)
         resultLabel.text = "Result: \(result)"
