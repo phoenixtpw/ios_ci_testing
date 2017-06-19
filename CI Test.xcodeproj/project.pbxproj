@@ -422,6 +422,7 @@
 				AD605E4B1EF394E90057CCFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD605E4C1EF394E90057CCFF /* Build configuration list for PBXNativeTarget "CI TestTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +431,7 @@
 				AD605E4E1EF394E90057CCFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
