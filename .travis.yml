@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode6.4
+osx_image: xcode8.2
 xcode_project: "CI Test.xcodeproj"
 xcode_scheme: "CI Test"
-xcode_sdk: iphonesimulator8.4
+xcode_sdk: iphonesimulator10.2
