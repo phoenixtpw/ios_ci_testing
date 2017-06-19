@@ -1,4 +1,7 @@
 language: objective-c
+osx_image: xcode8.3
 xcode_project: "CI Test.xcodeproj"
 xcode_scheme: "CI Test"
-script: rvm get stable && xcodebuild -destination "platform=IOS Simulator,name=iPhone 6" -scheme "CI Test" build && xcodebuild -destination "platform=IOS Simulator,name=iPhone 6" -scheme "CI Test" test
+xcode_sdk: iphonesimulator10.3
+before_install:
+  - rvm get stable
