@@ -1,11 +1,35 @@
 language: objective-c
 osx_image: xcode8.3
-xcode_project: "CI Test.xcodeproj"
-xcode_scheme: "CI Test"
+xcode_project: CI Test.xcodeproj
+xcode_scheme: CI Test
 xcode_sdk: iphonesimulator10.3
-script: 
-  - gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  - rvm get stable
-  - rvm cleanup all
-  - xcodebuild -project "CI Test.xcodeproj" -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
-  - xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
+
+env:
+  global:
+  - APP_NAME="CI Test"
+  - 'DEVELOPER_NAME="iPhone Distribution: Alex Louey (5B403HE559)"'
+  - PROFILE_NAME="IOS_CI_Test_Ad_Hoc"
+  
+  secure: WK8r6D59kAD/xNrVOxdSeIuik42/fZHYrtHV0ztd5uK+GY8KnpoBD/fUsylw4Sio6aRywMPHd/cHIt7+dYQTheRvMkzL3uUQHoB0zELUxRtGgu57yAdLbqLX3kR9bDeRkZr2LNT8eOZlhZGgId/FG2YyHw6HXp7Ythqjq7hAeZQRhCoZ3I227w8kMpbmy4E4xw76KiA8eHeMPtSPQfIdUS6bwVYvdiEw9c5klKmt0A5WHOd6unvfBx3Cj2x2Yc+HfVruymvu9vrMdWmlS+vsh7NNFdTnBbMUNG7hrs4XoqDPkBZyG9QRPs7CswhjnplHFQCH/RE4GNwsK41bkhJhTj0K4ah0rcjfMnKs1jnV4tJizAnOEacNfhWz4v7iGP1Si+MXwwsKP28RhZmQiohhbrQXc5LvO1HQa0PtCYrl4yyykCZ5erZsY7SW9IkbZ1KZMkuT/XTqJbJUy3z4ktTxc65pA01d1eF6gb1c2QRXSZIQaFsmnKNrf/NwHPbqr+Ycs2bT8N47XW1KDksDsHHXlChCW8t/e6nSlEv62/3Jroirq9f8fWu21zr+jTvahSRpyoHo41XsHh1pByNJwBi9Wa3nYxIDixx/ym7UTaybvcpW663GeITI3kfxLxxewi6oXT7TTLqVDQhLIJM4rsMn2/egOsu+Aj/hH1Vz87W+m3U=
+  secure: ElMrlwf/WKXlRbX4DhnmYI2DtBCNbbXPdVzg5QDzuq8q1mpQeEsVTl/TihVAvy6fevabg7hpnf1G8+nL/I97DDa9zXZ65YrKeKTh5qqyNWW1U0bP3jcuP/HKBhjPNhMxMT/g0pQdZY7Qj9skfZJUfAybwG35bgYxBQFGslwpTTkGT97EJCP/mzpdWXafmD3e6MhZmpZnZxuSb7VFx8pUh7xrPvuTQnB0Ngq7aVdxHIpV1n6SNxG6ApY4engdneyj2Gdt6uJEL43imhU7jjFQSqbmO3MRCYCeg1oSYqdbRb6haGqpEg8Nlgi6tehFFUP+7wpXCkrGo70Rba9eYVVmXeJv2i9Ri7DNLyuj1wKqVt/WaUpCqhnFEKiomuQL5+RRpfgbRVfK0d9U6AoamGIik1RjLGcK9qeY+A6H5BhfVOgDeIMv+Fn2SGlLFYtAUulJqsu4jTPX1XMX9+arTpb6E2k/w1Czc9DqKT3o/X7s2h+9eFTh9MO1fAd/tEdO+m7PgWtImQFRPJJQwaeQl0i6zWr3AnG9Ejwfrey+0dkd1GHX8m3Yi9rdLVLCjkMUZh+PhAsibPdzOBKLClYmAdi1sDyNvdFza3uXdoRfgfkH6ohHtR/WV5ocJPWinOAOO0tBwRGcVKWZ03N1x+ismUNyYxoKgVC4fCCZ1R0UqfFiMNU=
+
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision.enc -d -a -out scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- ./scripts/add-key.sh
+- ./scripts/update-bundle.sh
+
+script:
+- gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+- rvm get stable
+- rvm cleanup all
+#- xcodebuild -project "CI Test.xcodeproj" -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
+- xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
+  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
+- xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
