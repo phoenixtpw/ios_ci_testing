@@ -12,23 +12,21 @@ env:
   - secure: DTgYSJ2F0dKkkYibUfRbcdxuj7FPrPpHQ3vlVmJBPR2yBDkf6sJdmG3ZfmToNNJoBcigrY6ksWAPLJQTNzzGJM3Xa7DHkc7WOpnmesCwFA4bmzg9Lesa5Kw/iRontWrpBkTfFuMuBIf0XyRm/usg/rVWAlvr+LAwOlMsbJ/3oXNVdVrosWaqVKXPE208E9Te0kkqpHi75HsRWi8u/oY4eDoPDy4pt0GkE5gvuop5WaW32ch9Y7+GDahV5lXmgR7reLz3OfTmXhefWmRu0fT5caDzS0evG7ogsXMT2h87DBJ2rxOA0/jjzm+UPYUH1RkVaf7KSkwZC7uk3Yh/mys8ADBxUiBRBUsWfChuvEcKGeNp1R6ZLiK31/Fsr9oMFozi3OdhpnNx5eIolyizZ/pYbHwcJ2qS9Iq+3atRJanHkeDUbTcjsvd7vAZPWEH7hXy7v5ZDwi4NOH8VD0ePh8BKko+rcuAL9L9AgX2eF406/Ur+JuogCKdBw0ca/4rOuanXupQStG90aak0Ou6/P1gJ8WrfYpfjMk6o4Ee0g0cdIua+qgNsO71la5VvojzXSaxyj9BdFTaJ2DHvfS+oct6yl9LcbJ8HYReTyf/5m0PM565xOwJBgZLH8XeLvZcJPOcBQmESbxAo99eSNn9jxM8XNfWptEtooaV7+Bc6lEDmiUU=
 
 before_script:
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision.enc
-  -d -a -out scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
-  -out scripts/certs/dist.cer
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
-  -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision.enc -d -a -out scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
 - ./scripts/update-bundle.sh
+
 script:
 - gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 - rvm get stable
 - rvm cleanup all
-- xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
-  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
-- xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
-  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+- xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
+- xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+
 after_success:
 - ./scripts/sign-and-upload.sh
+
 after_script:
 - ./scripts/remove-key.sh
