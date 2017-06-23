@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode8.2
 xcode_project: CI Test.xcodeproj
 xcode_scheme: CI Test
 xcode_sdk: iphonesimulator10.3
@@ -34,9 +34,9 @@ before_script:
 - ./scripts/update-bundle.sh
 
 script:
-- gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-- rvm get stable
-- rvm cleanup all
+#- gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+#- rvm get stable
+#- rvm cleanup all
 - xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
   Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
 - xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
