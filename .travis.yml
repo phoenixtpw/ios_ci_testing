@@ -38,7 +38,7 @@ script:
 #- rvm get stable
 #- rvm cleanup all
 - xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
-  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.2 ONLY_ACTIVE_ARCH=NO
+  Simulator,name=iPhone 7 Plus,OS=10.2' -sdk iphonesimulator10.2 ONLY_ACTIVE_ARCH=NO
 - xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
   SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 
