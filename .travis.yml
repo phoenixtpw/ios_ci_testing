@@ -17,7 +17,10 @@ notifications:
       recipients:
         - po-wei.tsai@appscore.com.au
         - mark.fulton@appscore.com.au
-        
+
+before_install:
+- gem update fastlane --no-ri --no-rdoc --no-document
+
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision.enc -d -a -out scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
