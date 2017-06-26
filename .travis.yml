@@ -1,8 +1,8 @@
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode8.3
 xcode_project: CI Test.xcodeproj
 xcode_scheme: CI Test
-xcode_sdk: iphonesimulator10.2
+xcode_sdk: iphonesimulator10.3
 env:
   global:
   - APP_NAME="CI Test"
@@ -38,9 +38,11 @@ script:
 #- rvm get stable
 #- rvm cleanup all
 - xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
-  Simulator,name=iPhone 7 Plus,OS=10.2' -sdk iphonesimulator10.2 ONLY_ACTIVE_ARCH=NO
+  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
 - xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
   SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+#- xcodebuild -alltargets -configuration Release -scheme "CI Test" -archivePath "${APP_PATH}/${PROJECT}.xcarchive" archive
+#- xcodebuild -exportProvisioningProfile "${PROVISIONING_PROFILE_NAME}" -exportArchive -exportFormat IPA -archivePath "${APP_PATH}/${PROJECT}.xcarchive" -exportPath "${IPA_DIR}/${PROJECT}.ipa" CODE_SIGN_IDENTITY="${SIGNING_IDENTITY}"
 
 after_script:
 - ./scripts/sign-and-upload.sh
