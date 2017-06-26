@@ -4,11 +4,17 @@
 #    echo "Testing on a development branch."
 #fi
 
-if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
-echo "This is a pull request. No deployment will be done."
+#if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
+#echo "This is a pull request. No deployment will be done."
+#fi
+#if [[ "$TRAVIS_BRANCH" != "master" ]]; then
+#echo "Testing on a branch other than master. No deployment will be done."
+#fi
+
+if [ "$TRAVIS_BRANCH" = "development" ]; then
+fastlane ios beta;
 fi
-if [[ "$TRAVIS_BRANCH" != "master" ]]; then
-echo "Testing on a branch other than master. No deployment will be done."
+if [ "$TRAVIS_BRANCH" = "master" ]; then
+echo "Mster TRAVIS_BRANCH";
 fi
-fastlane ios beta
 
