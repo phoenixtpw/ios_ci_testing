@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04379F571EFCA23F0046B1B4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04379F551EFCA23F0046B1B4 /* Fabric.framework */; };
 		04379F581EFCA23F0046B1B4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04379F561EFCA23F0046B1B4 /* Crashlytics.framework */; };
+		50A65F041F00BFC500540513 /* exportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A65F031F00BFC500540513 /* exportOptions.plist */; };
 		AD605E301EF394E90057CCFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD605E2F1EF394E90057CCFF /* AppDelegate.swift */; };
 		AD605E321EF394E90057CCFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD605E311EF394E90057CCFF /* ViewController.swift */; };
 		AD605E351EF394E90057CCFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD605E331EF394E90057CCFF /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		04379F551EFCA23F0046B1B4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		04379F561EFCA23F0046B1B4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		50A65F031F00BFC500540513 /* exportOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = exportOptions.plist; sourceTree = "<group>"; };
 		AD605E2C1EF394E90057CCFF /* CI Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CI Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD605E2F1EF394E90057CCFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD605E311EF394E90057CCFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				AD605E3B1EF394E90057CCFF /* Info.plist */,
 				AD605E4F1EF396380057CCFF /* Adder.swift */,
 				AD605E511EF396E20057CCFF /* InputConverter.swift */,
+				50A65F031F00BFC500540513 /* exportOptions.plist */,
 			);
 			path = "CI Test";
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				AD605E3A1EF394E90057CCFF /* LaunchScreen.storyboard in Resources */,
 				AD605E371EF394E90057CCFF /* Assets.xcassets in Resources */,
 				AD605E351EF394E90057CCFF /* Main.storyboard in Resources */,
+				50A65F041F00BFC500540513 /* exportOptions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
