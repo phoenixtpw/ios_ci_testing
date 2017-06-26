@@ -37,13 +37,15 @@ script:
 #- gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 #- rvm get stable
 #- rvm cleanup all
-- xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
-  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
-- xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
-  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
-  
-- xcodebuild -project "CI Test.xcodeproj -scheme "CI Test" archive -archivePath "CI Test.xcarchive
-- xcodebuild -exportArchive -exportOptionsPlist "CI Test/exportOptions.plist" -archivePath "CI Test.xcarchive" -exportPath "CI Test"
+- set -o pipefail && xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -sdk iphonesimulator10.3 -destination 'name=iPhone SE,OS=10.3' ONLY_ACTIVE_ARCH=NO | xcpretty
+
+#- xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
+#  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
+#- xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
+#  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+#  
+#- xcodebuild -project "CI Test.xcodeproj -scheme "CI Test" archive -archivePath "CI Test.xcarchive
+#- xcodebuild -exportArchive -exportOptionsPlist "CI Test/exportOptions.plist" -archivePath "CI Test.xcarchive" -exportPath "CI Test"
 #- xcodebuild -alltargets -configuration Release -scheme "CI Test" -archivePath "${APP_PATH}/${PROJECT}.xcarchive" archive
 #- xcodebuild -exportProvisioningProfile "${PROVISIONING_PROFILE_NAME}" -exportArchive -exportFormat IPA -archivePath "${APP_PATH}/${PROJECT}.xcarchive" -exportPath "${IPA_DIR}/${PROJECT}.ipa" CODE_SIGN_IDENTITY="${SIGNING_IDENTITY}"
 
