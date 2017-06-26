@@ -48,7 +48,8 @@ script:
 #- xcodebuild -exportArchive -exportOptionsPlist "CI Test/exportOptions.plist" -archivePath "CI Test.xcarchive" -exportPath "CI Test"
 #- xcodebuild -alltargets -configuration Release -scheme "CI Test" -archivePath "${APP_PATH}/${PROJECT}.xcarchive" archive
 #- xcodebuild -exportProvisioningProfile "${PROVISIONING_PROFILE_NAME}" -exportArchive -exportFormat IPA -archivePath "${APP_PATH}/${PROJECT}.xcarchive" -exportPath "${IPA_DIR}/${PROJECT}.ipa" CODE_SIGN_IDENTITY="${SIGNING_IDENTITY}"
-
+- fastlane beta
+after_success: 
+ - ./scripts/sign-and-upload.sh
 after_script:
- - /scripts/sign-and-upload.sh
- - /scripts/remove-key.sh
+ - ./scripts/remove-key.sh
