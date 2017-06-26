@@ -48,6 +48,8 @@ script:
 #- xcodebuild -alltargets -configuration Release -scheme "CI Test" -archivePath "${APP_PATH}/${PROJECT}.xcarchive" archive
 #- xcodebuild -exportProvisioningProfile "${PROVISIONING_PROFILE_NAME}" -exportArchive -exportFormat IPA -archivePath "${APP_PATH}/${PROJECT}.xcarchive" -exportPath "${IPA_DIR}/${PROJECT}.ipa" CODE_SIGN_IDENTITY="${SIGNING_IDENTITY}"
 after_success: 
- - ./scripts/sign-and-upload.sh
+script:
+  - if [ "$TRAVIS_BRANCH" = "development" ]; then fastlane ios beta; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then echo "Mster TRAVIS_BRANCH"; fi
 after_script:
  - ./scripts/remove-key.sh
