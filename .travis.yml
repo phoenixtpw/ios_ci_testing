@@ -38,7 +38,6 @@ script:
 #- rvm get stable
 #- rvm cleanup all
 - set -o pipefail && xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -sdk iphonesimulator10.3 -destination 'name=iPhone 7,OS=10.3.1' ONLY_ACTIVE_ARCH=NO | xcpretty
-- fastlane ios beta
 #- xcodebuild test -project "CI Test.xcodeproj" -scheme "CI Test" -destination 'platform=iOS
 #  Simulator,name=iPhone 7 Plus,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO
 #- xcodebuild -project "CI Test.xcodeproj" -sdk iphoneos -configuration Release OBJROOT=$PWD/build
