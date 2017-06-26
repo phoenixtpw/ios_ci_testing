@@ -50,5 +50,5 @@ script:
 #- xcodebuild -exportProvisioningProfile "${PROVISIONING_PROFILE_NAME}" -exportArchive -exportFormat IPA -archivePath "${APP_PATH}/${PROJECT}.xcarchive" -exportPath "${IPA_DIR}/${PROJECT}.ipa" CODE_SIGN_IDENTITY="${SIGNING_IDENTITY}"
 
 after_script:
-- ./scripts/sign-and-upload.sh
-- ./scripts/remove-key.sh
+ - /scripts/sign-and-upload.sh
+ - /scripts/remove-key.sh
