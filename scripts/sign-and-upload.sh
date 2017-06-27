@@ -15,6 +15,6 @@ if [ "$TRAVIS_BRANCH" = "development" ]; then
 fastlane ios beta;
 fi
 if [ "$TRAVIS_BRANCH" = "master" ]; then
-echo "Mster TRAVIS_BRANCH";
+fastlane ios release;
 fi
 

@@ -48,6 +48,8 @@ platform :ios do
     gym(scheme: "CI Test") # Build your app - more options available
     deliver(force: true)
     # frameit
+
+ 
   end
 
   # You can define as many lanes as you want
