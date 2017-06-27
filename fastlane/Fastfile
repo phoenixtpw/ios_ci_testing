@@ -45,7 +45,7 @@ platform :ios do
   lane :release do
     # match(type: "appstore")
     # snapshot
-    sigh(force: true)
+    sigh(output_path: “./scripts/profile/CITestDistribution.mobileprovision“,)
     gym(scheme: "CI Test") # Build your app - more options available
     deliver(force: true)
     # frameit
