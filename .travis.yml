@@ -21,11 +21,11 @@ notifications:
     - mark.fulton@appscore.com.au
 
 before_install:
-- security delete-certificate -c "Apple Worldwide Developer Relations Certification Authority" /Library/Keychains/System.keychain
-- security delete-certificate -c "Apple Worldwide Developer Relations Certification Authority" /Library/Keychains/login.keychain
+- sudo security delete-certificate -c "Apple Worldwide Developer Relations Certification Authority" /Library/Keychains/System.keychain
 - curl -O -L http://developer.apple.com/certificationauthority/AppleWWDRCA.cer
-- security import AppleWWDRCA.cer  -k ~/Library/Keychains/login.keychain -A
-- gem update fastlane --no-ri --no-rdoc --no-document
+- sudo security import AppleWWDRCA.cer  -k ~/Library/Keychains/System.keychain -A
+- sudo security import AppleWWDRCA.cer -k ~/Library/Keychains/login.keychain -A
+- sudo gem update fastlane --no-ri --no-rdoc --no-document
 
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/IOS_CI_Test_Ad_Hoc.mobileprovision.enc
