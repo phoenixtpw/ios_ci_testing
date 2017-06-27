@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04379F571EFCA23F0046B1B4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04379F551EFCA23F0046B1B4 /* Fabric.framework */; };
+		04379F581EFCA23F0046B1B4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04379F561EFCA23F0046B1B4 /* Crashlytics.framework */; };
+		50A65F041F00BFC500540513 /* exportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A65F031F00BFC500540513 /* exportOptions.plist */; };
 		AD605E301EF394E90057CCFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD605E2F1EF394E90057CCFF /* AppDelegate.swift */; };
 		AD605E321EF394E90057CCFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD605E311EF394E90057CCFF /* ViewController.swift */; };
 		AD605E351EF394E90057CCFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD605E331EF394E90057CCFF /* Main.storyboard */; };
@@ -31,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04379F551EFCA23F0046B1B4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		04379F561EFCA23F0046B1B4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		50A65F031F00BFC500540513 /* exportOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = exportOptions.plist; sourceTree = "<group>"; };
 		AD605E2C1EF394E90057CCFF /* CI Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CI Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD605E2F1EF394E90057CCFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD605E311EF394E90057CCFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04379F581EFCA23F0046B1B4 /* Crashlytics.framework in Frameworks */,
+				04379F571EFCA23F0046B1B4 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +78,8 @@
 				AD605E2E1EF394E90057CCFF /* CI Test */,
 				AD605E431EF394E90057CCFF /* CI TestTests */,
 				AD605E2D1EF394E90057CCFF /* Products */,
+				04379F551EFCA23F0046B1B4 /* Fabric.framework */,
+				04379F561EFCA23F0046B1B4 /* Crashlytics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +103,7 @@
 				AD605E3B1EF394E90057CCFF /* Info.plist */,
 				AD605E4F1EF396380057CCFF /* Adder.swift */,
 				AD605E511EF396E20057CCFF /* InputConverter.swift */,
+				50A65F031F00BFC500540513 /* exportOptions.plist */,
 			);
 			path = "CI Test";
 			sourceTree = "<group>";
@@ -117,6 +128,7 @@
 				AD605E281EF394E90057CCFF /* Sources */,
 				AD605E291EF394E90057CCFF /* Frameworks */,
 				AD605E2A1EF394E90057CCFF /* Resources */,
+				04379F541EFCA1FF0046B1B4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -157,7 +169,8 @@
 				TargetAttributes = {
 					AD605E2B1EF394E90057CCFF = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 5B4P3HE559;
+						ProvisioningStyle = Manual;
 					};
 					AD605E3F1EF394E90057CCFF = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -193,6 +206,7 @@
 				AD605E3A1EF394E90057CCFF /* LaunchScreen.storyboard in Resources */,
 				AD605E371EF394E90057CCFF /* Assets.xcassets in Resources */,
 				AD605E351EF394E90057CCFF /* Main.storyboard in Resources */,
+				50A65F041F00BFC500540513 /* exportOptions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +218,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04379F541EFCA1FF0046B1B4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 2061da790245376da9edaafacd12b5492bc9ddae 229dc30353109ed887301fadcd978fda7f1339a83a4837e71142b2fb3509884d";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD605E281EF394E90057CCFF /* Sources */ = {
@@ -355,10 +385,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Louey (RNTQ7KES52)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 5B4P3HE559;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "CI Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appscore.CI-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "953e9256-70e2-4d6d-a164-322846031662";
+				PROVISIONING_PROFILE_SPECIFIER = "IOS CI Test Ad Hoc";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -367,10 +406,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Alex Louey (5B4P3HE559)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 5B4P3HE559;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "CI Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appscore.CI-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "953e9256-70e2-4d6d-a164-322846031662";
+				PROVISIONING_PROFILE_SPECIFIER = "IOS CI Test Ad Hoc";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -422,6 +470,7 @@
 				AD605E4B1EF394E90057CCFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD605E4C1EF394E90057CCFF /* Build configuration list for PBXNativeTarget "CI TestTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +479,7 @@
 				AD605E4E1EF394E90057CCFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
