@@ -13,7 +13,8 @@
 
 if [ "$TRAVIS_BRANCH" = "development" ]; then
 echo $TRAVIS_BRANCH;
-fastlane ios beta;
+fastlane test;
+#fastlane ios beta;
 fi
 if [ "$TRAVIS_BRANCH" = "master" ]; then
 echo $TRAVIS_BRANCH;
