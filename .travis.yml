@@ -21,10 +21,11 @@ notifications:
     - mark.fulton@appscore.com.au
 
 before_install:
+- security delete-certificate -c "Apple Worldwide Developer Relations Certification Authority" ~/Library/Keychains/login.keychain
 - sudo security delete-certificate -c "Apple Worldwide Developer Relations Certification Authority" /Library/Keychains/System.keychain
 - curl -O -L http://developer.apple.com/certificationauthority/AppleWWDRCA.cer
 - sudo security import AppleWWDRCA.cer  -k ~/Library/Keychains/System.keychain -A
-- sudo security import AppleWWDRCA.cer -k ~/Library/Keychains/login.keychain -A
+- security import AppleWWDRCA.cer -k ~/Library/Keychains/login.keychain -A
 - sudo gem update fastlane --no-ri --no-rdoc --no-document
 
 before_script:
