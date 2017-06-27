@@ -45,6 +45,7 @@ platform :ios do
   lane :release do
     # match(type: "appstore")
     # snapshot
+    sigh
     gym(scheme: "CI Test") # Build your app - more options available
     deliver(force: true)
     # frameit
